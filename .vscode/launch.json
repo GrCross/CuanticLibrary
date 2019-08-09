@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CuanticLibrary",
+            "request": "launch",
+            "mainClass": "cuanticlibrary.CuanticLibrary"
+        }
+    ]
+}
