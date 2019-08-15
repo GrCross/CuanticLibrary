@@ -12,24 +12,3 @@ This is the quantum computing library, here you will find different properties o
 
 The project has its own unit tests to check the functionality of each of the methods.
 
-# Project Structure
-.
-│---pom.xml
-│---- README.md
-│------/src
-    │-------/main
-    │   ------- /java
-    │       ---------/edu
-    │          -------------/eci
-    │               --------------- /cnyt
-    │                  ----------------- CuanticLibrary.java
-    │                   --------------------/entities
-    │                       -----------------------Calc.java
-    │                       -----------------------Complex.java
-    │                       -----------------------Polar.java
-    └------/test
-        └---------/java
-            └------------/edu
-                └--------------/eci
-                    └-----------------/cnyt
-                        └--------------------ImaginaryCalcTest.java
