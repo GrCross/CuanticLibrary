@@ -1,6 +1,8 @@
 package edu.eci.cnyt.entities;
 
-public class Polar{
+import java.text.DecimalFormat;
+
+public class Polar {
 
     private double angle;
     private double module;
@@ -16,7 +18,8 @@ public class Polar{
 
 
     public double getSinPart() {
-        return sinPart;
+        DecimalFormat df = new DecimalFormat("##.##");
+        return Double.valueOf(df.format(sinPart));
     }
 
     public void setSinPart(double sinPart) {
@@ -24,7 +27,9 @@ public class Polar{
     }
 
     public double getCosPart() {
-        return cosPart;
+        DecimalFormat df = new DecimalFormat("##.##");
+        return Double.valueOf(df.format(cosPart));
+        
     }
 
     public void setCosPart(double cosPart) {
@@ -40,7 +45,8 @@ public class Polar{
     }
 
     public double getAngle() {
-        return angle;
+        DecimalFormat df = new DecimalFormat("##.##");
+        return Double.valueOf(df.format(angle));
     }
 
     public void setAngle(double angle) {

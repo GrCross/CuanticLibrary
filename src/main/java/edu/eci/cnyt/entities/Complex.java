@@ -48,9 +48,10 @@ public class Complex{
         return Double.toString(realP) +","+ Double.toString(imagiP);
     }
 
-    private Polar polar(){
+    public Polar polar(){
         double module = this.module(); 
-        double angle = Math.atan(realP/imagiP);
+        double angle = Math.atan(imagiP/realP);
+        
         Polar polar = new Polar(angle, module);
         return polar;
     }

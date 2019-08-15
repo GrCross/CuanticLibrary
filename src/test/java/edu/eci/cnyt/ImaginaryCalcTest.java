@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import edu.eci.cnyt.entities.Calc;
 import edu.eci.cnyt.entities.Complex;
+import edu.eci.cnyt.entities.Polar;
 
 /**
  *
@@ -101,9 +102,9 @@ public class ImaginaryCalcTest {
         Complex sComplex = new Complex(realS, imagiS);
         Complex divisionComplex = calc.division(fComplex, sComplex);
         double realPart = (realP*realS+imagiP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2));
-        System.out.println(realPart);
+        
         double imagiPart = (imagiP*realS-realP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2)); 
-        System.out.println(imagiPart + "Test");
+        
         assertTrue(realPart == divisionComplex.getRealP() && imagiPart == divisionComplex.getImagiP());
     }
     @Test
@@ -125,5 +126,23 @@ public class ImaginaryCalcTest {
         Complex testConjugate = fComplex.conjugate();
 
         assertTrue(realP == testConjugate.getRealP() && testConjugate.getImagiP()*-1 == imagiP);
+    }
+
+    @Test
+    public void PolarTest(){
+        double realP = 23;
+        double imagiP = -56;
+        Complex fComplex = new Complex(realP, imagiP);
+        Polar polar = fComplex.polar();
+        
+        assertTrue(polar.getSinPart() == -0.93 && polar.getCosPart() == 0.38);         
+    }
+
+    @Test
+    public void phaseTest(){
+        double realP = 96;
+        double imagiP = 54;
+        Complex fComplex = new Complex(realP, imagiP);
+        assertTrue(fComplex.phase() == 0.51);   
     }
 }

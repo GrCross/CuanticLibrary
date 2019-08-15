@@ -45,10 +45,10 @@ public class Calc{
         double realNumerator = firstComplex[0]*secondComplex[0]+firstComplex[1]*secondComplex[1];
         double realDenominator = (Math.pow(secondComplex[0], 2) + Math.pow(secondComplex[1], 2));
         double realPart = realNumerator/realDenominator;
-        System.out.println(realPart + "realPA");
+        
         double imagiNumerator = firstComplex[1]*secondComplex[0]-firstComplex[0]*secondComplex[1];
         double imagiPart = imagiNumerator/realDenominator;
-        System.out.println(imagiPart + "imagiPA");
+        
         
         return new Complex(realPart, imagiPart);
     }
