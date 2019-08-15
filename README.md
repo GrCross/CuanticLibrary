@@ -1,5 +1,7 @@
 # CuanticLibrary
 
+**autor** : Daniel Alberto Rosales Castro
+
 This is the quantum computing library, here you will find different properties on complex numbers such as:
 1.  Sum
 2.  Product
