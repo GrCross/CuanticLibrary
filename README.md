@@ -12,5 +12,22 @@ This is the quantum computing library, here you will find different properties o
 7.  Conversion between polar and Cartesian representations
 8.  Returning the phase of a complex number.
 
-The project has its own unit tests to check the functionality of each of the methods.
+
+## Install
+
+In order to install the program you must download the repository through the next link:
+
+````
+https://github.com/GrCross/CuanticLibrary
+````
+
+## tests
+
+In order to execute the Tests run the next comand:
+
+````
+$ mvn package
+````
+
+There are 8 test at the moment, one test for every function in mentioned before.
 

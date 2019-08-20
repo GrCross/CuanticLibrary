@@ -1,6 +1,7 @@
 package edu.eci.cnyt.entities;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 public class Polar {
 
@@ -53,7 +54,33 @@ public class Polar {
         this.angle = angle;
     }
 
+
+    @Override
+    public String toString() {
+        return "{" +
+            " angle='" + getAngle() + "'" +
+            ", module='" + getModule() + "'" +
+            ", cosPart='" + getCosPart() + "'" +
+            ", sinPart='" + getSinPart() + "'" +
+            "}";
+    }
 	
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Polar)) {
+            return false;
+        }
+        Polar polar = (Polar) o;
+        return angle == polar.angle && module == polar.module && cosPart == polar.cosPart && sinPart == polar.sinPart;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(angle, module, cosPart, sinPart);
+    }
 	
     
 }

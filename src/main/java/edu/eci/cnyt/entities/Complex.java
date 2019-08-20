@@ -5,6 +5,7 @@
  */
 package edu.eci.cnyt.entities;
 
+import java.util.Objects;
 
 /**
  *
@@ -22,6 +23,10 @@ public class Complex{
         this.polar = polar();
     }
 
+    public Complex(){
+
+    }
+
     public double phase(){
         return polar.getAngle();
     }
@@ -33,20 +38,33 @@ public class Complex{
     public Complex conjugate(){
         Complex conjugate = new Complex(realP, imagiP * -1);
         return conjugate;
+    }    
+
+    public double getRealP() {
+        return this.realP;
     }
 
-    public double getRealP(){
-        return realP;
+    public void setRealP(double realP) {
+        this.realP = realP;
     }
 
-    public double getImagiP(){
-        return imagiP;
+    public double getImagiP() {
+        return this.imagiP;
     }
 
-    
-    public String toString(){
-        return Double.toString(realP) +","+ Double.toString(imagiP);
+    public void setImagiP(double imagiP) {
+        this.imagiP = imagiP;
     }
+
+    public Polar getPolar() {
+        if(polar == null)this.polar = polar();
+        return this.polar;
+    }
+
+    public void setPolar(Polar polar) {
+        this.polar = polar;
+    }
+
 
     public Polar polar(){
         double module = this.module(); 
@@ -55,4 +73,34 @@ public class Complex{
         Polar polar = new Polar(angle, module);
         return polar;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " realP='" + getRealP() + "'" +
+            ", imagiP='" + getImagiP() + "'" +
+            ", polar='" + getPolar().toString() + "'" +
+            "}";
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+         
+        if (o == this)
+            return true;
+        if (!(o instanceof Complex)) {
+            return false;
+        }
+        Complex complex = (Complex) o;
+        return realP == complex.realP && imagiP == complex.imagiP && Objects.equals(this.getPolar(), complex.getPolar());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(realP, imagiP, polar);
+    }
+
+    
 }
