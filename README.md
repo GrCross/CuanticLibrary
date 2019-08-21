@@ -29,5 +29,5 @@ In order to execute the Tests run the next comand:
 $ mvn package
 ````
 
-There are 8 test at the moment, one test for every function in mentioned before.
+There are 8 test at the moment, one test for every function mentioned before.
 
