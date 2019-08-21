@@ -7,6 +7,8 @@ package edu.eci.cnyt.entities;
 
 import java.util.List;
 
+import edu.eci.cnyt.entities.ComplexImpl.*;
+
 /**
  *
  * @author daniel
@@ -19,17 +21,17 @@ public class Calc{
     public Calc(){
     }
 
-    
-    /** 
+
+    /**
      * 
      * @param first
      * @param second
      * @return
-    */
+     */
     public Complex sum(Complex first, Complex second){
         double sumReal = first.getRealP() + second.getRealP();
         double sumImagi = first.getImagiP() + second.getImagiP();
-        return new Complex(sumReal,sumImagi);
+        return new ComplexNumber(sumReal,sumImagi);
     }
 
     /** 
@@ -42,7 +44,7 @@ public class Calc{
         extractComponents(first, second);
         double multReal = firstComplex[0]*secondComplex[0]-firstComplex[1]*secondComplex[1];
         double multImagi = firstComplex[0]*secondComplex[1]+firstComplex[1]*secondComplex[0];
-        return new Complex(multReal, multImagi);
+        return new ComplexNumber(multReal, multImagi);
     }
 
     /** 
@@ -56,7 +58,7 @@ public class Calc{
         extractComponents(first, second);
         double subsReal = firstComplex[0] - secondComplex[0];
         double subsImagi = firstComplex[1] - secondComplex[1];
-        return new Complex(subsReal,subsImagi);
+        return new ComplexNumber(subsReal,subsImagi);
     }
 
     /** 
@@ -75,7 +77,7 @@ public class Calc{
         double imagiPart = imagiNumerator/realDenominator;
         
         
-        return new Complex(realPart, imagiPart);
+        return new ComplexNumber(realPart, imagiPart);
     }
 
     public List<List<Complex>> sumVectors(){

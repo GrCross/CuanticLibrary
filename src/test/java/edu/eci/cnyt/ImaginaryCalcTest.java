@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import edu.eci.cnyt.entities.Calc;
 import edu.eci.cnyt.entities.Complex;
+import edu.eci.cnyt.entities.ComplexImpl.*;
 import edu.eci.cnyt.entities.Polar;
 
 /**
@@ -54,14 +55,14 @@ public class ImaginaryCalcTest {
         Calc calc = new Calc();
         double realP = 5;
         double imagiP = -10;
-        Complex fComplex = new Complex(realP, imagiP);
+        Complex fComplex = new ComplexNumber(realP, imagiP);
 
         double realS = 50;
         double imagiS = 320;
-        Complex sComplex = new Complex(realS, imagiS);
+        Complex sComplex = new ComplexNumber(realS, imagiS);
 
         Complex complexSum = calc.sum(fComplex, sComplex);
-        Complex complexTest = new Complex(realP+realS, imagiP+imagiS);
+        Complex complexTest = new ComplexNumber(realP+realS, imagiP+imagiS);
         
         assertTrue(complexSum.equals(complexTest));
     }
@@ -71,18 +72,18 @@ public class ImaginaryCalcTest {
         Calc calc = new Calc();
         double realP = 5;
         double imagiP = -10;
-        Complex fComplex = new Complex(realP, imagiP);
+        Complex fComplex = new ComplexNumber(realP, imagiP);
 
         double realS = 50;
         double imagiS = 320;
-        Complex sComplex = new Complex(realS, imagiS);
+        Complex sComplex = new ComplexNumber(realS, imagiS);
 
         Complex complexMult = calc.mult(fComplex, sComplex);
         
         assertTrue(realP*realS-imagiP*imagiS == complexMult.getRealP());
         assertTrue(realP*imagiS+imagiP*realS == complexMult.getImagiP());
 
-        Complex complexTest = new Complex();
+        Complex complexTest = new ComplexNumber();
         complexTest.setRealP(realP*realS-imagiP*imagiS);
         complexTest.setImagiP(realP*imagiS+imagiP*realS);
         
@@ -94,14 +95,14 @@ public class ImaginaryCalcTest {
         Calc calc = new Calc();
         double realP = 5;
         double imagiP = -10;
-        Complex fComplex = new Complex(realP, imagiP);
+        Complex fComplex = new ComplexNumber(realP, imagiP);
 
         double realS = 50;
         double imagiS = 320;
-        Complex sComplex = new Complex(realS, imagiS);
+        Complex sComplex = new ComplexNumber(realS, imagiS);
 
         Complex complexSub = calc.substract(fComplex, sComplex);
-        Complex complexTest = new Complex(realP-realS, imagiP-imagiS);
+        Complex complexTest = new ComplexNumber(realP-realS, imagiP-imagiS);
         
         assertTrue(complexTest.equals(complexSub));
     }
@@ -111,15 +112,15 @@ public class ImaginaryCalcTest {
         Calc calc = new Calc();
         double realP = 2;
         double imagiP = 3;
-        Complex fComplex = new Complex(realP, imagiP);
+        Complex fComplex = new ComplexNumber(realP, imagiP);
 
         double realS = 4;
         double imagiS = -5;
-        Complex sComplex = new Complex(realS, imagiS);
+        Complex sComplex = new ComplexNumber(realS, imagiS);
 
         Complex divisionComplex = calc.division(fComplex, sComplex);
 
-        Complex complexTest = new Complex();
+        Complex complexTest = new ComplexNumber();
         complexTest.setImagiP((imagiP*realS-realP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2)));
         complexTest.setRealP((realP*realS+imagiP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2)));
         
@@ -131,7 +132,7 @@ public class ImaginaryCalcTest {
         
         double realP = 5;
         double imagiP = -10;
-        Complex fComplex = new Complex(realP, imagiP); 
+        Complex fComplex = new ComplexNumber(realP, imagiP); 
 
         double testModule = fComplex.module();
 
@@ -143,10 +144,10 @@ public class ImaginaryCalcTest {
     public void ConjugateTest(){
         double realP = 23;
         double imagiP = -56;
-        Complex fComplex = new Complex(realP, imagiP); 
+        Complex fComplex = new ComplexNumber(realP, imagiP); 
 
         Complex testConjugate = fComplex.conjugate();
-        Complex complexTest = new Complex(realP, imagiP*-1);
+        Complex complexTest = new ComplexNumber(realP, imagiP*-1);
 
         
         assertTrue(complexTest.equals(testConjugate));
@@ -157,7 +158,7 @@ public class ImaginaryCalcTest {
         
         double realP = 23;
         double imagiP = -56;
-        Complex fComplex = new Complex(realP, imagiP);
+        Complex fComplex = new ComplexNumber(realP, imagiP);
         Polar polar = fComplex.polar();
         
         assertTrue(polar.getSinPart() == -0.93 && polar.getCosPart() == 0.38);         
@@ -167,7 +168,7 @@ public class ImaginaryCalcTest {
     public void phaseTest(){
         double realP = 96;
         double imagiP = 54;
-        Complex fComplex = new Complex(realP, imagiP);
+        Complex fComplex = new ComplexNumber(realP, imagiP);
         assertTrue(fComplex.phase() == 0.51);   
     }
 }
