@@ -1,4 +1,4 @@
-# CuanticLibrary
+# QuantumLibrary
 
 **autor** : Daniel Alberto Rosales Castro
 
