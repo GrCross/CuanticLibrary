@@ -98,3 +98,43 @@ $ mvn package
 ````
 
 There are 8 test at the moment, one test for every function mentioned before.
+
+### Modify the tests
+
+There are 4 function those needs two Complex number in order to work:
+All 4 function has the variables **fComplex** and **sComplex** (first Complex, second Complex) their respective imaginary part and real part have the next names **realP**and **imagiP** for the first complex and **realS** and **imagiS** for the second complex.
+
+````
+@Test
+    public void sumTest(){
+
+        Calc calc = new Calc();
+        double realP = 5;
+        double imagiP = -10;
+        Complex fComplex = new Complex(realP, imagiP);
+
+        double realS = 50;
+        double imagiS = 320;
+        Complex sComplex = new Complex(realS, imagiS);
+
+        Complex complexSum = calc.sum(fComplex, sComplex);
+        Complex complexTest = new Complex(realP+realS, imagiP+imagiS);
+        
+        assertTrue(complexSum.equals(complexTest));
+    }
+````
+
+the other tests only needs one Complex number and only have	the **fComplex** variable, but it has the same structure
+
+````
+@Test
+    public void PolarTest(){
+        
+        double realP = 23;
+        double imagiP = -56;
+        Complex fComplex = new Complex(realP, imagiP);
+        Polar polar = fComplex.polar();
+        
+        assertTrue(polar.getSinPart() == -0.93 && polar.getCosPart() == 0.38);         
+    }
+````
