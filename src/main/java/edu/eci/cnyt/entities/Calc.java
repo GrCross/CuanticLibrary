@@ -78,11 +78,29 @@ public class Calc{
         return new Complex(realPart, imagiPart);
     }
 
-    public List<List<Complex>> sumVectors(){
-
-        return null;
-
+    public Complex[][] sum(Complex[][]first, Complex[][]second){
+        Complex[][] ans = new Complex[first.length][first[0].length];
+        for (int i = 0; i < first.length; i++) {
+            for (int j = 0; j < first[0].length ; j++) {
+                ans[i][j] = this.sum(first[i][j], second[i][j]);
+            }
+        }
+        return ans;
     }
+
+    public Complex[][] adjunt(Complex[][] first){
+        Complex[][] ans = new Complex[first.length][first[0].length];
+
+        for (int i = 0; i < first.length; i++) {
+            for (int j = 0; j < first[0].length; j++) {
+                Complex constant = new Complex(-1, 0);
+                ans[i][j] = this.mult(constant,first[i][j]);
+            }
+        }
+        return ans;
+    } 
+    
+
     
     
     private void extractComponents(Complex first, Complex second){
@@ -91,4 +109,6 @@ public class Calc{
         firstComplex = temp1;
         secondComplex = temp2;
     }
+
+    
 }
