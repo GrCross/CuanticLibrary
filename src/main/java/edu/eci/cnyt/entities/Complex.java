@@ -77,11 +77,8 @@ public class Complex{
 
     @Override
     public String toString() {
-        return "{" +
-            " realP='" + getRealP() + "'" +
-            ", imagiP='" + getImagiP() + "'" +
-            ", polar='" + getPolar().toString() + "'" +
-            "}";
+        String string = "("+getRealP()+","+getImagiP()+")";
+        return string;
     }
 
 

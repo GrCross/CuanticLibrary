@@ -8,6 +8,10 @@ package edu.eci.cnyt;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import org.junit.*;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,6 +27,8 @@ import edu.eci.cnyt.entities.Polar;
  * @author daniel
  */
 public class ImaginaryCalcTest {
+
+    Calc calc = new Calc();
     
     public ImaginaryCalcTest() {
     }
@@ -51,7 +57,7 @@ public class ImaginaryCalcTest {
     @Test
     public void sumTest(){
 
-        Calc calc = new Calc();
+        
         double realP = 5;
         double imagiP = -10;
         Complex fComplex = new Complex(realP, imagiP);
@@ -68,7 +74,7 @@ public class ImaginaryCalcTest {
     
     @Test
     public void multTest(){
-        Calc calc = new Calc();
+        
         double realP = 5;
         double imagiP = -10;
         Complex fComplex = new Complex(realP, imagiP);
@@ -91,7 +97,7 @@ public class ImaginaryCalcTest {
     
     @Test
     public void substractTest(){
-        Calc calc = new Calc();
+        
         double realP = 5;
         double imagiP = -10;
         Complex fComplex = new Complex(realP, imagiP);
@@ -108,7 +114,7 @@ public class ImaginaryCalcTest {
     
      @Test
     public void divisionTest(){
-        Calc calc = new Calc();
+        
         double realP = 2;
         double imagiP = 3;
         Complex fComplex = new Complex(realP, imagiP);
@@ -169,5 +175,62 @@ public class ImaginaryCalcTest {
         double imagiP = 54;
         Complex fComplex = new Complex(realP, imagiP);
         assertTrue(fComplex.phase() == 0.51);   
+    }
+
+    @Test
+    public void transposeTest() throws FileNotFoundException{
+        Complex[][] matrix = createMatrix("1");
+        Complex[][] transposeMatrix = calc.transpose(matrix);
+
+        //printMatrix(matrix);
+        //System.out.println("------------------");
+        //printMatrix(transposeMatrix);
+        for (int i = 0; i < matrix.length;i++) {
+            for (int j = 0; j < matrix[0].length;j++) {
+                assertTrue(matrix[i][j].equals(transposeMatrix[j][i]));
+                
+            }
+        }
+        
+    }
+
+
+    @Test
+    public void determinantTest() throws FileNotFoundException {
+
+        Complex[][] matrix = createMatrix("Binary");
+        printMatrix(matrix);
+        calc.determinant(matrix);
+        
+        //System.out.println(determinat.toString());
+
+    }
+
+
+    private Complex[][] createMatrix(String sample) throws FileNotFoundException {
+        File file = new File("src/test/java/edu/eci/cnyt/testFiles/matrixSample"+sample+".in");
+        Scanner sc = new Scanner(file);
+        
+        int rows = Integer.parseInt(sc.nextLine());
+        int cols = Integer.parseInt(sc.nextLine());
+        Complex[][]matrix = new Complex[rows][cols]; 
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                String[] temp = sc.nextLine().split(",");
+                Complex complex = new Complex(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]));
+                matrix[i][j] = complex;
+            }
+        }
+        return matrix;
+    }
+
+    private void printMatrix(Complex[][] matrix){
+
+        for (int i = 0; i < matrix.length;i++) {
+            for (int j = 0; j < matrix[0].length;j++) {
+                System.out.print(matrix[i][j].toString()+" ");
+            }
+            System.out.println();
+        }
     }
 }
