@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import org.junit.*;
@@ -126,8 +127,12 @@ public class ImaginaryCalcTest {
         Complex divisionComplex = calc.division(fComplex, sComplex);
 
         Complex complexTest = new Complex();
-        complexTest.setImagiP((imagiP*realS-realP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2)));
-        complexTest.setRealP((realP*realS+imagiP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2)));
+        DecimalFormat df = new DecimalFormat("#.##");
+        Double imagiPans = Double.valueOf(df.format((imagiP*realS-realP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2))));
+        Double realPans = Double.valueOf(df.format((realP*realS+imagiP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2))));
+        complexTest.setImagiP(imagiPans);
+        complexTest.setRealP(realPans);
+
         
         assertTrue(complexTest.equals(divisionComplex));
     }
@@ -182,9 +187,6 @@ public class ImaginaryCalcTest {
         Complex[][] matrix = createMatrix("1");
         Complex[][] transposeMatrix = calc.transpose(matrix);
 
-        //printMatrix(matrix);
-        //System.out.println("------------------");
-        //printMatrix(transposeMatrix);
         for (int i = 0; i < matrix.length;i++) {
             for (int j = 0; j < matrix[0].length;j++) {
                 assertTrue(matrix[i][j].equals(transposeMatrix[j][i]));
@@ -194,16 +196,36 @@ public class ImaginaryCalcTest {
         
     }
 
+    @Test
+    public void multMatrixTest() throws FileNotFoundException{
+        Complex[][] matrix1 = createMatrix("Real1");
+        Complex[][] matrix2 = createMatrix("Real2");
+        Complex[][] multMatrix = calc.mult(matrix1,matrix2);
+
+        printMatrix(multMatrix);
+        
+    }
+
 
     @Test
     public void determinantTest() throws FileNotFoundException {
 
-        Complex[][] matrix = createMatrix("Binary");
-        printMatrix(matrix);
+        Complex[][] matrix = createMatrix("Real1");
         calc.determinant(matrix);
-        
-        //System.out.println(determinat.toString());
 
+    }
+
+    @Test
+    public void adjuntTest() throws FileNotFoundException{
+        Complex[][] matrix = createMatrix("Real1");
+        Complex[][] adjunt = calc.adjunt(matrix);
+        
+    }
+
+    @Test
+    public void inverseTest() throws FileNotFoundException{
+        Complex[][] matrix = createMatrix("Real1");
+        Complex[][] inverse = calc.inverse(matrix);
     }
 
 
