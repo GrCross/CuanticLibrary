@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+import edu.eci.cnyt.entities.Exceptions.ComplexException;
 import org.junit.*;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,6 +31,8 @@ import edu.eci.cnyt.entities.Polar;
 public class ImaginaryCalcTest {
 
     Calc calc = new Calc();
+    String defaultPath = "src/test/java/edu/eci/cnyt/testFiles/matrixSample";
+    String answerPath = "src/test/java/edu/eci/cnyt/testFiles/answers/matrixSample";
     
     public ImaginaryCalcTest() {
     }
@@ -114,7 +117,7 @@ public class ImaginaryCalcTest {
     }
     
      @Test
-    public void divisionTest(){
+    public void divisionTest() throws ComplexException {
         
         double realP = 2;
         double imagiP = 3;
@@ -184,7 +187,7 @@ public class ImaginaryCalcTest {
 
     @Test
     public void transposeTest() throws FileNotFoundException{
-        Complex[][] matrix = createMatrix("1");
+        Complex[][] matrix = createMatrix(defaultPath,"1");
         Complex[][] transposeMatrix = calc.transpose(matrix);
 
         for (int i = 0; i < matrix.length;i++) {
@@ -197,40 +200,100 @@ public class ImaginaryCalcTest {
     }
 
     @Test
-    public void multMatrixTest() throws FileNotFoundException{
-        Complex[][] matrix1 = createMatrix("Real1");
-        Complex[][] matrix2 = createMatrix("Real2");
+    public void multMatrixTest() throws FileNotFoundException, ComplexException {
+        Complex[][] matrix1 = createMatrix(defaultPath,"1");
+        Complex[][] matrix2 = createMatrix(defaultPath,"2");
         Complex[][] multMatrix = calc.mult(matrix1,matrix2);
-
-        printMatrix(multMatrix);
+        Complex[][] ansMatrix = createMatrix(answerPath,"Mult");
+        assertTrue(compareMatrix(multMatrix,ansMatrix));
         
     }
 
 
     @Test
-    public void determinantTest() throws FileNotFoundException {
+    public void determinantTest() throws FileNotFoundException, ComplexException {
 
-        Complex[][] matrix = createMatrix("Real1");
-        calc.determinant(matrix);
+        Complex[][] matrix = createMatrix(defaultPath,"Real1");
+        Complex ans = calc.determinant(matrix);
+        assertTrue(ans.equals(new Complex(-28,0)));
 
     }
 
     @Test
-    public void adjuntTest() throws FileNotFoundException{
-        Complex[][] matrix = createMatrix("Real1");
+    public void adjuntTest() throws FileNotFoundException, ComplexException {
+        Complex[][] matrix = createMatrix(defaultPath,"3");
         Complex[][] adjunt = calc.adjunt(matrix);
-        
+        Complex[][] ansdAdjunt = createMatrix(answerPath,"Adj2");
+        assertTrue(compareMatrix(adjunt,ansdAdjunt));
     }
 
     @Test
-    public void inverseTest() throws FileNotFoundException{
-        Complex[][] matrix = createMatrix("Real1");
-        Complex[][] inverse = calc.inverse(matrix);
+    public void conjugateTest() throws FileNotFoundException {
+        Complex[][] matrix = createMatrix(defaultPath,"3");
+        Complex[][] conjugate = calc.conjugateMatrix(matrix);
+        Complex[][] conjugateAns = createMatrix(answerPath,"Conjugate");
+        assertTrue(compareMatrix(conjugate,conjugateAns));
     }
 
 
-    private Complex[][] createMatrix(String sample) throws FileNotFoundException {
-        File file = new File("src/test/java/edu/eci/cnyt/testFiles/matrixSample"+sample+".in");
+
+    @Test
+    public void inverseTest() throws FileNotFoundException, ComplexException {
+        Complex[][] matrix = createMatrix(defaultPath,"3");
+        Complex[][] inverse = calc.inverse(matrix);
+        Complex[][] inverseAns = createMatrix(answerPath,"Inverse");
+        assertTrue(compareMatrix(inverse,inverseAns));
+    }
+
+    @Test
+    public void internalProductTest() throws FileNotFoundException, ComplexException {
+        Complex[][] matrix1 = createMatrix(defaultPath,"1");
+        Complex[][] matrix2 = createMatrix(defaultPath,"2");
+        Complex internal = calc.internalProduct(matrix1,matrix2);
+        assertTrue(internal.equals(new Complex(32,-9)));
+
+    }
+
+    @Test
+    public void normTest() throws FileNotFoundException, ComplexException {
+        Complex[][] matrix1 = createMatrix(defaultPath,"1");
+        double norm = calc.matrixNorm(matrix1);
+        assertTrue(norm==Math.sqrt(59));
+
+
+    }
+
+    @Test
+    public void actionTest() throws FileNotFoundException, ComplexException {
+        Complex[][] matrix1 = createMatrix(defaultPath,"2");
+        Complex[][] matrix2 = createMatrix(defaultPath,"Vector");
+        Complex[][] action = calc.action(matrix1,matrix2);
+        Complex[][] ansAction = createMatrix(answerPath,"Action");
+        assertTrue(compareMatrix(action,ansAction));
+
+    }
+
+    @Test
+    public void hermitianTest() throws FileNotFoundException, ComplexException {
+        Complex[][] matrix1 = createMatrix(defaultPath,"Hermitian");
+        assertTrue(calc.isHermitian(matrix1));
+
+    }
+
+
+    @Test
+    public void tensorProductText() throws FileNotFoundException, ComplexException {
+        Complex[][] matrixA = createMatrix(defaultPath,"2");
+        Complex[][] matrixB = createMatrix(defaultPath,"1");
+        Complex[][] tensor = calc.tensorProduct(matrixA,matrixB);
+        Complex[][] tensorAns = createMatrix(answerPath,"Tensor");
+        assertTrue(compareMatrix(tensorAns,tensor));
+
+    }
+
+
+    private Complex[][] createMatrix(String path,String sample) throws FileNotFoundException {
+        File file = new File(path+sample+".in");
         Scanner sc = new Scanner(file);
         
         int rows = Integer.parseInt(sc.nextLine());
@@ -239,7 +302,7 @@ public class ImaginaryCalcTest {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 String[] temp = sc.nextLine().split(",");
-                Complex complex = new Complex(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]));
+                Complex complex = new Complex(Double.parseDouble(temp[0]),Double.parseDouble(temp[1]));
                 matrix[i][j] = complex;
             }
         }
@@ -254,5 +317,15 @@ public class ImaginaryCalcTest {
             }
             System.out.println();
         }
+    }
+
+    private boolean compareMatrix(Complex[][] m1, Complex[][] m2){
+        boolean equals = true;
+        for (int i = 0; i < m1.length && equals;i++) {
+            for (int j = 0; j < m1[0].length && equals;j++) {
+                if(!m1[i][j].equals(m2[i][j])) equals=false;
+            }
+        }
+        return equals;
     }
 }

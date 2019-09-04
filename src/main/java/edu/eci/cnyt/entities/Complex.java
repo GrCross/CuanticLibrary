@@ -38,7 +38,12 @@ public class Complex{
     public Complex conjugate(){
         Complex conjugate = new Complex(realP, imagiP * -1);
         return conjugate;
-    }    
+    }
+
+    public Complex aditiveInverse(){
+        Complex inverse = new Complex(-1*realP,imagiP*-1);
+        return inverse;
+    }
 
     public double getRealP() {
         return this.realP;
