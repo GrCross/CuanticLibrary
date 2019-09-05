@@ -130,9 +130,8 @@ public class ImaginaryCalcTest {
         Complex divisionComplex = calc.division(fComplex, sComplex);
 
         Complex complexTest = new Complex();
-        DecimalFormat df = new DecimalFormat("#.##");
-        Double imagiPans = Double.valueOf(df.format((imagiP*realS-realP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2))));
-        Double realPans = Double.valueOf(df.format((realP*realS+imagiP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2))));
+        Double imagiPans = (imagiP*realS-realP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2));
+        Double realPans = (realP*realS+imagiP*imagiS)/(Math.pow(realS, 2)+Math.pow(imagiS, 2));
         complexTest.setImagiP(imagiPans);
         complexTest.setRealP(realPans);
 

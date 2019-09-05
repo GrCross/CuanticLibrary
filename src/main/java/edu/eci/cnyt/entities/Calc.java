@@ -91,8 +91,8 @@ public class Calc {
 
         double imagiNumerator = firstComplex[1] * secondComplex[0] - firstComplex[0] * secondComplex[1];
         double imagiPart = imagiNumerator / realDenominator;
-        DecimalFormat df = new DecimalFormat("#.##");
-        return new Complex(Double.valueOf(df.format(realPart)), Double.valueOf(df.format(imagiPart)));
+        //DecimalFormat df = new DecimalFormat("#.##");
+        return new Complex(realPart,imagiPart);
     }
 // ------------ Matrix zone--------------------
 
