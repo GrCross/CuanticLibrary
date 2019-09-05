@@ -32,17 +32,32 @@ This is the quantum computing library, here you will find different properties o
 14. Check if it is Hermitian
 15. Tensor product.
 
-Translated with www.DeepL.com/Translator
 
 
 
 
 ## Install
 
+### requisites
+To use the library you must have Maven and Git
+There is a link with a tutorial of the installation:
+
 In order to install the program you must download the repository through the next link:
+**Windows**
+https://docs.wso2.com/display/IS323/Installing+Apache+Maven+on+Windows
+
+**Linux**
+https://www.javahelps.com/2017/10/install-apache-maven-on-linux.html
+
+**Mac Oxs**
+
+https://www.mkyong.com/maven/install-maven-on-mac-osx/
+
+To download and use the repository clone the repository through the next command:
+
 
 ````
-https://github.com/GrCross/CuanticLibrary
+git clone https://github.com/GrCross/CuanticLibrary
 ````
 ## Use
 
