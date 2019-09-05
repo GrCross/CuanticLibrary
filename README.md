@@ -1,6 +1,6 @@
-# QuantumLibrary
+# Quantum Library
 
-**autor** : Daniel Alberto Rosales Castro
+**Autor** : Daniel Alberto Rosales Castro
 
 This is the quantum computing library, here you will find different properties on complex numbers such as:
 
@@ -16,23 +16,23 @@ This is the quantum computing library, here you will find different properties o
 8.  Returning the phase of a complex number.
 ### Complex matrix
 
+ 1. Addition of complex vectors.
+ 2. Inverse of complex vectors.
+ 3. Scalar multiplication of complex vectors.
+ 4. Addition of complex matrices.
+ 5. Inversion of complex matrices.
+ 6. Scalar multiplication of complex matrices.
+ 7. Transposed matrix
+ 8. Conjugate Matrix
+ 9. Attached Matrix
+10. Function to calculate the "action" of a matrix on a vector.
+11. Matrix standard
+12. Distance between dies
+13. Check if it is unitary
+14. Check if it is Hermitian
+15. Tensor product.
 
- 1. Adición de vectores complejos.
- 2. Inversa de vectores complejos.
- 3. Multiplicación escalar de vectores complejos.
- 4. Adición de matrices complejos.
- 5. Inversa de matrices complejos.
- 6. Multiplicación escalar de matrices complejas.
- 7. Matriz transpuesta
- 8. Matriz conjugada
- 9. Matriz adjunta
-10. Función para calcular la "acción" de una matriz sobre un vector.
-11. Norma de matrices
-12. Distancia entrematrices
-13. Revisar si es unitaria
-14. Revisar si es Hermitian
-15. Producto tensor.
-
+Translated with www.DeepL.com/Translator
 
 
 
@@ -46,15 +46,15 @@ https://github.com/GrCross/CuanticLibrary
 ````
 ## Use
 
-To use the Functions that are related with complex number and Matrix of complex numbers, have in mind the next recomendations
+To use the Functions that are related with complex number and Matrix of complex numbers, have in mind the next recommendation’s
 
 * In order to use all the function you must import the class **Calc** and the class **Complex.**
-* The parameters of all fuction has the next names **c1** and **c2**
+* The parameters of all functions has the next names **c1** and **c2**
 * If you want to use one function with vectors send a nx1 matrix where the n is the number of rows
 
 ## tests
 
-In order to execute the Tests run the next comand:
+In order to execute the Tests run the next command:
 
 ````
 $ mvn package
@@ -62,11 +62,9 @@ $ mvn package
 
 There are 19 test at the moment, one test for every function mentioned before.
 
-on the package **TestFiles** are diferent files with examples that are used by tests. inside that folder there are one folder with the respectives answers
-
+on the package **TestFiles** are different files with examples that are used by tests. inside that folder there are one folder with the respective answers
 
 ### Example
-
 
 ````
 @Test
@@ -88,7 +86,7 @@ on the package **TestFiles** are diferent files with examples that are used by t
     }
 ````
 
-the other tests only needs one Complex number and only have	the **fComplex** variable, but it has the same structure
+the other tests only need one Complex number and only have the **fComplex** variable, but it has the same structure
 
 ````
 @Test
@@ -108,3 +106,5 @@ the other tests only needs one Complex number and only have	the **fComplex** var
 To read the Calculator documentation see the next link
 
 [Calc](Calc.html)
+
+
