@@ -158,7 +158,7 @@ public class Calc {
      *  Subtract between two complex matrix or two complex vectors
      * @param c1 first complex matrix
      * @param c2 second complex matrix
-     * @return
+     * @return C
      * @throws ComplexException if the two matrix have different number of columns and rows
      */
     public Complex[][] substract(Complex[][] c1, Complex[][] c2) throws ComplexException {

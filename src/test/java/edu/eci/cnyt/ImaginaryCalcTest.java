@@ -186,6 +186,16 @@ public class ImaginaryCalcTest {
     }
 
     @Test
+    public void matrixSumTest() throws FileNotFoundException, ComplexException {
+        Complex[][] matrix1 = createMatrix(defaultPath,"1");
+        Complex[][] matrix2 = createMatrix(defaultPath,"2");
+        Complex[][] sumMatrix = calc.sum(matrix1,matrix2);
+        Complex[][] ansMatrix = createMatrix(answerPath, "sum");
+        assertTrue(compareMatrix(sumMatrix,ansMatrix));
+        
+    }
+
+    @Test
     public void transposeTest() throws FileNotFoundException{
         Complex[][] matrix = createMatrix(defaultPath,"1");
         Complex[][] transposeMatrix = calc.transpose(matrix);
@@ -206,7 +216,6 @@ public class ImaginaryCalcTest {
         Complex[][] multMatrix = calc.mult(matrix1,matrix2);
         Complex[][] ansMatrix = createMatrix(answerPath,"Mult");
         assertTrue(compareMatrix(multMatrix,ansMatrix));
-        
     }
 
 
