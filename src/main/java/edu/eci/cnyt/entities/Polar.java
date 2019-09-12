@@ -19,8 +19,8 @@ public class Polar {
 
 
     public double getSinPart() {
-        DecimalFormat df = new DecimalFormat("##.##");
-        return Double.valueOf(df.format(sinPart));
+        //DecimalFormat df = new DecimalFormat("##.##");
+        return sinPart;
     }
 
     public void setSinPart(double sinPart) {
@@ -28,8 +28,8 @@ public class Polar {
     }
 
     public double getCosPart() {
-        DecimalFormat df = new DecimalFormat("##.##");
-        return Double.valueOf(df.format(cosPart));
+        //DecimalFormat df = new DecimalFormat("##.##");
+        return cosPart;
         
     }
 
@@ -46,8 +46,8 @@ public class Polar {
     }
 
     public double getAngle() {
-        DecimalFormat df = new DecimalFormat("##.##");
-        return Double.valueOf(df.format(angle));
+       // DecimalFormat df = new DecimalFormat("##.##");
+        return angle;
     }
 
     public void setAngle(double angle) {

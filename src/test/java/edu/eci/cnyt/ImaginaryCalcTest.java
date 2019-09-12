@@ -73,7 +73,7 @@ public class ImaginaryCalcTest {
         Complex complexSum = calc.sum(fComplex, sComplex);
         Complex complexTest = new Complex(realP+realS, imagiP+imagiS);
         
-        assertTrue(complexSum.equals(complexTest));
+        assertEquals(complexSum,complexTest);
     }
     
     @Test
@@ -96,7 +96,7 @@ public class ImaginaryCalcTest {
         complexTest.setRealP(realP*realS-imagiP*imagiS);
         complexTest.setImagiP(realP*imagiS+imagiP*realS);
         
-        assertTrue(complexMult.equals(complexTest));
+        assertEquals(complexMult,complexTest);
     }
     
     @Test
@@ -113,7 +113,7 @@ public class ImaginaryCalcTest {
         Complex complexSub = calc.substract(fComplex, sComplex);
         Complex complexTest = new Complex(realP-realS, imagiP-imagiS);
         
-        assertTrue(complexTest.equals(complexSub));
+        assertEquals(complexTest,complexSub);
     }
     
      @Test
@@ -136,7 +136,7 @@ public class ImaginaryCalcTest {
         complexTest.setRealP(realPans);
 
         
-        assertTrue(complexTest.equals(divisionComplex));
+        assertEquals(complexTest,divisionComplex);
     }
 
     @Test
@@ -149,7 +149,7 @@ public class ImaginaryCalcTest {
         double testModule = fComplex.module();
 
         double realModule = Math.sqrt(Math.pow(5, 2)+Math.pow(-10, 2));
-        assertTrue(testModule == realModule);
+        assertEquals(testModule,realModule,0.001);
     }
 
     @Test
@@ -162,7 +162,7 @@ public class ImaginaryCalcTest {
         Complex complexTest = new Complex(realP, imagiP*-1);
 
         
-        assertTrue(complexTest.equals(testConjugate));
+        assertEquals(complexTest,testConjugate);
     }
 
     @Test
@@ -173,7 +173,9 @@ public class ImaginaryCalcTest {
         Complex fComplex = new Complex(realP, imagiP);
         Polar polar = fComplex.polar();
         
-        assertTrue(polar.getSinPart() == -0.93 && polar.getCosPart() == 0.38);         
+        
+        
+        assertTrue(polar.getSinPart() == -0.9250198183784528 && polar.getCosPart() == 0.3799188539768645);         
     }
 
     @Test
@@ -181,7 +183,7 @@ public class ImaginaryCalcTest {
         double realP = 96;
         double imagiP = 54;
         Complex fComplex = new Complex(realP, imagiP);
-        assertTrue(fComplex.phase() == 0.51);   
+        assertTrue(fComplex.phase() == Math.atan(imagiP/realP));   
     }
 
     @Test
@@ -189,7 +191,7 @@ public class ImaginaryCalcTest {
         Complex[][] matrix1 = createMatrix(defaultPath,"1");
         Complex[][] matrix2 = createMatrix(defaultPath,"2");
         Complex[][] sumMatrix = calc.sum(matrix1,matrix2);
-        Complex[][] ansMatrix = createMatrix(answerPath, "sum");
+        Complex[][] ansMatrix = createMatrix(answerPath, "Sum");
         assertTrue(compareMatrix(sumMatrix,ansMatrix));
         
     }
@@ -223,7 +225,7 @@ public class ImaginaryCalcTest {
 
         Complex[][] matrix = createMatrix(defaultPath,"Real1");
         Complex ans = calc.determinant(matrix);
-        assertTrue(ans.equals(new Complex(-28,0)));
+        assertEquals(ans,new Complex(-28,0));
 
     }
 
@@ -258,7 +260,7 @@ public class ImaginaryCalcTest {
         Complex[][] matrix1 = createMatrix(defaultPath,"1");
         Complex[][] matrix2 = createMatrix(defaultPath,"2");
         Complex internal = calc.internalProduct(matrix1,matrix2);
-        assertTrue(internal.equals(new Complex(32,-9)));
+        assertEquals(internal,new Complex(32,-9));
 
     }
 
