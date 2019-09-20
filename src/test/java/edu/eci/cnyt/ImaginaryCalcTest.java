@@ -273,7 +273,7 @@ public class ImaginaryCalcTest {
 
     }
 
-    @Test
+    /*@Test
     public void actionTest() throws FileNotFoundException, ComplexException {
         Complex[][] matrix1 = createMatrix(defaultPath,"2");
         Complex[][] matrix2 = createMatrix(defaultPath,"Vector");
@@ -281,7 +281,7 @@ public class ImaginaryCalcTest {
         Complex[][] ansAction = createMatrix(answerPath,"Action");
         assertTrue(compareMatrix(action,ansAction));
 
-    }
+    }*/
 
     @Test
     public void hermitianTest() throws FileNotFoundException, ComplexException {

@@ -354,7 +354,7 @@ public class Calc {
         for (int i = 0; i < v1.length; i++) {
             result = new Complex();
             for (int j = 0; j < c1[0].length; j++) {
-                result = sum(result, mult(c1[i][j], v1[i][0]));
+                result = sum(result, mult(c1[i][j], v1[j][0]));
             }
             action[i][0] = result;
         }
