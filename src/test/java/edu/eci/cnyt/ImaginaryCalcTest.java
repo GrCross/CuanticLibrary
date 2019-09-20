@@ -31,8 +31,8 @@ import edu.eci.cnyt.entities.Polar;
 public class ImaginaryCalcTest {
 
     Calc calc = new Calc();
-    String defaultPath = "src/test/java/edu/eci/cnyt/testFiles/matrixSample";
-    String answerPath = "src/test/java/edu/eci/cnyt/testFiles/answers/matrixSample";
+    String defaultPath = "src/test/java/edu/eci/cnyt/testFilesCalc/matrixSample";
+    String answerPath = "src/test/java/edu/eci/cnyt/testFilesCalc/answers/matrixSample";
     
     public ImaginaryCalcTest() {
     }

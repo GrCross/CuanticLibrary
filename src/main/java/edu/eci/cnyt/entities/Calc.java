@@ -5,9 +5,7 @@
  */
 package edu.eci.cnyt.entities;
 
-import java.text.DecimalFormat;
-import java.util.List;
-import edu.eci.cnyt.entities.*;
+
 import edu.eci.cnyt.entities.Exceptions.ComplexException;
 
 /**
@@ -272,7 +270,6 @@ public class Calc {
             }
         }
 
-        Complex[][] ans = new Complex[c1.length][c1[0].length];
         for (int i = 0; i < c1.length; i++) {
             for (int j = 0; j < c1[0].length; j++) {
                 adj[i][j] = this.constantMult(Math.pow(-1, i + j), adj[i][j]);
