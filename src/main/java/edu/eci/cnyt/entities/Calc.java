@@ -502,6 +502,15 @@ public class Calc {
         return in;
     }
 
+    public Complex[][] zeroMatrix(int rows,int cols){
+        Complex[][] mat = new Complex[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                mat[i][j] = new Complex(0,0);
+            }
+        }
+        return mat;
+    }
 
 
 }

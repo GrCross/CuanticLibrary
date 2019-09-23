@@ -59,11 +59,14 @@ public class QuatumMarblesTests {
     @Test
     public void TestCalculateStateFraction() throws FileNotFoundException, ComplexException {
         Complex[][] matrix = this.createMatrixFractions(defaultPath,"Fraction1");
-        printMatrix(matrix);
         Complex[][] vector = this.createMatrixFractions(defaultPath,"VectorFraction1");
         Complex[][] nextState = qm.MarblesCalculateState(matrix, vector, 0);
 
-        printMatrix(nextState);
+    }
+
+    @Test
+    public void slitProbability() throws ComplexException {
+        qm.marbleCalculationStateFraction(2,1,6);
     }
 
 
@@ -100,7 +103,6 @@ public class QuatumMarblesTests {
             for (int j = 0; j < cols; j++) {
                 String[] uTemp = temp[j].split(",");
                 String[] fraction = uTemp[0].split("/");
-                System.out.println(uTemp[0]+"---"+uTemp[1]);
                 Double ansFraction =  Double.parseDouble(fraction[0])/Double.parseDouble(fraction[1]);
                 double imagiP = Double.parseDouble(uTemp[1]);
                 Complex complex = new Complex(ansFraction, imagiP);
@@ -109,6 +111,7 @@ public class QuatumMarblesTests {
         }
         return matrix;
     }
+
 
     private boolean compareMatrix(Complex[][] m1, Complex[][] m2){
         boolean equals = true;
