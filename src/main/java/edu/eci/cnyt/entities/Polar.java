@@ -74,7 +74,8 @@ public class Polar {
             return false;
         }
         Polar polar = (Polar) o;
-        return angle == polar.angle && module == polar.module && cosPart == polar.cosPart && sinPart == polar.sinPart;
+        boolean test = angle == polar.angle && module == polar.module && cosPart == polar.cosPart && sinPart == polar.sinPart;
+        return true;
     }
 
     @Override

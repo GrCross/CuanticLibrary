@@ -23,19 +23,20 @@ public class QuantumMarbles {
         return state;
     }
 
+
+
     public Complex[][] marbleCalculationStateFraction(Integer slits,
                                                       Integer shared,
-                                                      Integer targets) throws ComplexException {
+                                                      Integer targets,boolean isComplex) throws ComplexException {
         int tam = slits+targets+1;
         Complex[][] matrix = calc.zeroMatrix(tam,tam);
 
         for (int i = 1; i <= slits; i++) {
             matrix[i][0] = new Complex((1/(double)slits),0);
-            System.out.println(matrix[i][0].toString());
+
         }
 
-        printMatrix(matrix);
-        System.out.println("-------------------------------------------------");
+
         Map<Integer,Integer> deltas = new HashMap<Integer, Integer>();
         for (int i = 1; i <= slits; i++) {
             for (int j = slits+1; j < slits+targets ; j++) {
@@ -48,6 +49,8 @@ public class QuantumMarbles {
                 }
             }
         }
+
+
         int max=0;
         for (Integer k: deltas.keySet()) {
             Integer integer = deltas.get(k);
@@ -116,6 +119,39 @@ public class QuantumMarbles {
         for (int i = slits+1; i < slits+targets; i++) {
             if(matrix[i][1].equals(new Complex(-1,0))) sum+=1;
         }
+        if(!isComplex){
+            matrix = fillWithFractionValues(matrix,slits,targets);
+        }else{
+            matrix = fillWithComplexValues(matrix,slits,targets);
+        }
+
+
+
+        return matrix;
+    }
+
+    private Complex[][] fillWithComplexValues(Complex[][] matrix, Integer slits, Integer targets) {
+        int sum=0;
+        for (int i = slits+1; i < slits+targets; i++) {
+            if(matrix[i][1].equals(new Complex(-1,0))) sum+=1;
+        }
+        int tam = matrix.length;
+        for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
+                if(matrix[i][j].equals(new Complex(-1,0))){
+                    matrix[i][j] = new Complex(1/Math.sqrt(sum*2),1);
+                }
+            }
+        }
+        return matrix;
+    }
+
+    private Complex[][] fillWithFractionValues(Complex[][] matrix,int slits,int targets){
+        int sum=0;
+        for (int i = slits+1; i < slits+targets; i++) {
+            if(matrix[i][1].equals(new Complex(-1,0))) sum+=1;
+        }
+        int tam = matrix.length;
         for (int i = 0; i < tam; i++) {
             for (int j = 0; j < tam; j++) {
                 if(matrix[i][j].equals(new Complex(-1,0))){
@@ -123,13 +159,23 @@ public class QuantumMarbles {
                 }
             }
         }
-
-        printMatrix(matrix);
-
         return matrix;
     }
 
-    public void crateSlitMatrix(Integer slits,Integer targets){
+    private Complex[][] fillWithFractionComplex(Complex[][] matrix,int slits,int targets){
+        int sum=0;
+        for (int i = slits+1; i < slits+targets; i++) {
+            if(matrix[i][1].equals(new Complex(-1,0))) sum+=1;
+        }
+        int tam = matrix.length;
+        for (int i = 0; i < tam; i++) {
+            for (int j = 0; j < tam; j++) {
+                if(matrix[i][j].equals(new Complex(-1,0))){
+                    matrix[i][j] = new Complex(1/(double)sum,0);
+                }
+            }
+        }
+        return matrix;
     }
 
     private void printMatrix(Complex[][] matrix){

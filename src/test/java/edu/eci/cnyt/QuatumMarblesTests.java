@@ -27,7 +27,7 @@ import edu.eci.cnyt.entities.Calc;
 
 public class QuatumMarblesTests {
     String defaultPath = "src/test/java/edu/eci/cnyt/testFilesMarbles/matrixSample";
-    String answerPath = "src/test/java/edu/eci/cnyt/testFilesMarbles/answers/matrixSample";
+    String answerPath = "src/test/java/edu/eci/cnyt/testFilesMarbles/answer/matrixSample";
 
     QuantumMarbles qm = new QuantumMarbles();
     
@@ -53,6 +53,10 @@ public class QuatumMarblesTests {
         Complex[][] matrix = this.createMatrix(defaultPath,"1");
         Complex[][] vector = this.createMatrix(defaultPath,"Vector1");
         Complex[][] nextState = qm.MarblesCalculateState(matrix, vector, 0);
+        Complex[][] ansState = this.createMatrix(answerPath,"VectorState");
+        printMatrix(nextState);
+        printMatrix(ansState);
+        assertTrue(this.compareMatrix(nextState,ansState));
 
     }
 
@@ -61,12 +65,22 @@ public class QuatumMarblesTests {
         Complex[][] matrix = this.createMatrixFractions(defaultPath,"Fraction1");
         Complex[][] vector = this.createMatrixFractions(defaultPath,"VectorFraction1");
         Complex[][] nextState = qm.MarblesCalculateState(matrix, vector, 0);
-
+        Complex[][] ansState = this.createMatrixFractions(answerPath,"VectorFractionState");
+        this.compareMatrix(nextState,ansState);
     }
 
     @Test
-    public void slitProbability() throws ComplexException {
-        qm.marbleCalculationStateFraction(2,1,6);
+    public void slitProbability() throws ComplexException, FileNotFoundException {
+        Complex[][] probabilities = qm.marbleCalculationStateFraction(2,1,6, false);
+        Complex[][] slitProComplexes = this.createMatrixFractions(answerPath,"Slit");
+        printMatrix(slitProComplexes);
+        System.out.println("------------------");
+        printMatrix(probabilities);
+    }
+
+    @Test
+    public void slitProbabilityComplex() throws ComplexException {
+        qm.marbleCalculationStateFraction(2,1,6, true);
     }
 
 
