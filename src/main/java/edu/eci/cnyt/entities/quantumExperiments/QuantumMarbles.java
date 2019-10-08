@@ -1,8 +1,7 @@
-package edu.eci.cnyt.entities.clasicalToQuantum;
+package edu.eci.cnyt.entities.quantumExperiments;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import edu.eci.cnyt.entities.Calc;
@@ -13,7 +12,7 @@ public class QuantumMarbles {
 
     Calc calc = new Calc();
 
-    public Complex[][] MarblesCalculateState(Complex[][] adjacencyMatrix, Complex[][] initialState, Integer clicks)
+    public Complex[][] marblesCalculateState(Complex[][] adjacencyMatrix, Complex[][] initialState, Integer clicks)
             throws ComplexException {
 
         Complex[][] powerMatrix = adjacencyMatrix;
@@ -25,7 +24,7 @@ public class QuantumMarbles {
 
 
 
-    public Complex[][] marbleCalculationStateFraction(Integer slits,
+    public Complex[][] marbleCalculationStateSlits(Integer slits,
                                                       Integer shared,
                                                       Integer targets,boolean isComplex) throws ComplexException {
         int tam = slits+targets+1;
@@ -68,7 +67,7 @@ public class QuantumMarbles {
         if(slits%2==1 && targets%2==0 && shared%2==1) throw new ComplexException(ComplexException.NO_SQUARE_MATRIX);
 
         for (int i = 1; i <= slits; i++) {
-            for (int j = j = slits+1; j < slits+targets; j++) {
+            for (int j = slits+1; j < slits+targets; j++) {
                 int delta = j - i;
                 if(maxDeltas.contains(delta))  matrix[j][i] = new Complex(-1, 0);
             }

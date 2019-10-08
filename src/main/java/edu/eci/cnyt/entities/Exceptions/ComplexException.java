@@ -8,6 +8,7 @@ public class ComplexException extends Exception {
     public static final String DIFFERENT_LENGTHS = "The matrices must have the same number of rows and columns in order to be operated";
     public static final String DIFFERENT_ROWS_AND_COLUMNS = "The matrices in order to be multiplicated their columns and rows must be the same lenght";
     public static final String NO_SQUARE_MATRIX = "The matrix must be square in order to realize this operation";
+    public static final String IS_NOT_HERMITIAN = "The matrix must be hermitian in order to realize this operation";
     public ComplexException(String message){
         super(message);
     }

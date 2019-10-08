@@ -424,6 +424,15 @@ public class Calc {
         return productotensor;
     }
 
+    public static double ketNorm(Complex[][] c1) {
+        double norma = 0;
+        for (int i = 0; i < c1.length; i++) {
+            norma += Math.pow(c1[i][0].module(), 2);
+        }
+        norma = Math.sqrt(norma);
+        return norma;
+    }
+
     private Complex[][] subMatrix(int noTouchI, int noTouchJ, Complex[][] c1) {
 
         Complex[][] mMatrix = new Complex[c1.length - 1][c1.length - 1];

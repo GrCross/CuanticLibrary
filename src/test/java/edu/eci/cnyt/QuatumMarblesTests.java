@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 import edu.eci.cnyt.entities.Complex;
 import edu.eci.cnyt.entities.Exceptions.ComplexException;
-import edu.eci.cnyt.entities.clasicalToQuantum.QuantumMarbles;
+import edu.eci.cnyt.entities.quantumExperiments.*;
 
 import org.junit.*;
 import org.junit.AfterClass;
@@ -52,10 +52,8 @@ public class QuatumMarblesTests {
     public void TestCalculateState() throws FileNotFoundException, ComplexException {
         Complex[][] matrix = this.createMatrix(defaultPath,"1");
         Complex[][] vector = this.createMatrix(defaultPath,"Vector1");
-        Complex[][] nextState = qm.MarblesCalculateState(matrix, vector, 0);
+        Complex[][] nextState = qm.marblesCalculateState(matrix, vector, 0);
         Complex[][] ansState = this.createMatrix(answerPath,"VectorState");
-        printMatrix(nextState);
-        printMatrix(ansState);
         assertTrue(this.compareMatrix(nextState,ansState));
 
     }
@@ -64,25 +62,27 @@ public class QuatumMarblesTests {
     public void TestCalculateStateFraction() throws FileNotFoundException, ComplexException {
         Complex[][] matrix = this.createMatrixFractions(defaultPath,"Fraction1");
         Complex[][] vector = this.createMatrixFractions(defaultPath,"VectorFraction1");
-        Complex[][] nextState = qm.MarblesCalculateState(matrix, vector, 0);
+        Complex[][] nextState = qm.marblesCalculateState(matrix, vector, 0);
         Complex[][] ansState = this.createMatrixFractions(answerPath,"VectorFractionState");
-        this.compareMatrix(nextState,ansState);
+        assertTrue(this.compareMatrix(nextState,ansState));
+
     }
 
     @Test
     public void slitProbability() throws ComplexException, FileNotFoundException {
-        Complex[][] probabilities = qm.marbleCalculationStateFraction(2,1,6, false);
+        Complex[][] probabilities = qm.marbleCalculationStateSlits(2,1,6, false);
         Complex[][] slitProComplexes = this.createMatrixFractions(answerPath,"Slit");
-        printMatrix(slitProComplexes);
-        System.out.println("------------------");
-        printMatrix(probabilities);
+        assertTrue(this.compareMatrix(probabilities, slitProComplexes));
     }
 
     @Test
-    public void slitProbabilityComplex() throws ComplexException {
-        qm.marbleCalculationStateFraction(2,1,6, true);
+    public void slitProbabilityComplex() throws ComplexException, FileNotFoundException {
+        Complex[][] probabilities = qm.marbleCalculationStateSlits(2,1,6, true);
+        Complex[][] ansProbabilities = this.createMatrix(answerPath, "MatrixFractionComplex");
+        assertTrue(this.compareMatrix(probabilities, ansProbabilities));
     }
 
+    
 
 
     private Complex[][] createMatrix(String path, String sample) throws FileNotFoundException {
@@ -129,8 +129,8 @@ public class QuatumMarblesTests {
 
     private boolean compareMatrix(Complex[][] m1, Complex[][] m2){
         boolean equals = true;
-        for (int i = 0; i < m1.length && equals;i++) {
-            for (int j = 0; j < m1[0].length && equals;j++) {
+        for (int i = 0; i < m2.length && equals;i++) {
+            for (int j = 0; j < m2[0].length && equals;j++) {
                 if(!m1[i][j].equals(m2[i][j])) equals=false;
             }
         }

@@ -61,23 +61,37 @@ git clone https://github.com/GrCross/CuanticLibrary
 ````
 ## Use
 
-To use the Functions that are related with complex number and Matrix of complex numbers, have in mind the next recommendation’s
+To use the Functions that are related with complex number and Matrix of complex numbers, have in mind the next recommendation’s.
 
 * In order to use all the function you must import the class **Calc** and the class **Complex.**
-* The parameters of all functions has the next names **c1** and **c2**
-* If you want to use one function with vectors send a nx1 matrix where the n is the number of rows
+* The parameters of all functions has the next names **c1** and **c2**.
+* If you want to use one function with vectors send a nx1 matrix where the n is the number of rows.
+  
+  ### Quantum Marbles
+  In order to use the Quantum marbles experiments libraries there are two public methods ``MarblesCalculateState`` and ``marbleCalculationStateSlits``.
 
-## tests
+  **marblesCalculateState:** this function receive an adjacency matrix and an initial state matrix.
+
+  **marbleCalculationStateSlits:** This function receive the number of slits, the number of shared slits and the number of targets, If we are calculating the states of a complex matrix we must set the ``isComplex`` parameter to true, in other way false. 
+
+
+## Tests
 
 In order to execute the Tests run the next command:
 
+#### Imaginary Calculator
 ````
-$ mvn package
+$ mvn -Dtest=ImaginaryCalcTest test
 ````
 
-There are 19 test at the moment, one test for every function mentioned before.
+#### Quantum marble experiments
+````
+$ mvn -Dtest=UsersServiceImplTest test
+````
 
-on the package **TestFiles** are different files with examples that are used by tests. inside that folder there are one folder with the respective answers
+There are 19 tests about Imaginary Calculator, one test for every function mentioned before And there are 4 Test about the Quantum marble experiments
+
+Exist varius package **TestFiles**, in that packages are different files with examples that are used by tests. Inside that folders there is one folder with the respective answers.
 
 ### Example
 
@@ -118,8 +132,10 @@ the other tests only need one Complex number and only have the **fComplex** vari
 
 ## Documentation
 
-To read the Calculator documentation see the next link
+To read the Calculator documentation see the check out html file
 
-[Calc](Calc.html)
+[Calc.html](Calc.html)
 
+## Licence
+[MIT](LICENSE)
 
