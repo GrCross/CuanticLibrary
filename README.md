@@ -86,7 +86,7 @@ $ mvn -Dtest=ImaginaryCalcTest test
 
 #### Quantum marble experiments
 ````
-$ mvn -Dtest=UsersServiceImplTest test
+$ mvn -Dtest=QuatumMarblesTests test
 ````
 
 There are 19 tests about Imaginary Calculator, one test for every function mentioned before And there are 4 Test about the Quantum marble experiments
