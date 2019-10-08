@@ -129,6 +129,10 @@ the other tests only need one Complex number and only have the **fComplex** vari
         assertTrue(polar.getSinPart() == -0.93 && polar.getCosPart() == 0.38);         
     }
 ````
+## Author
+**Daniel Alberto Rosales Castro**
+Estudent of software engineer at Escuela Colombiana de Ingenieria Julio Garavito
+
 
 ## Documentation
 
