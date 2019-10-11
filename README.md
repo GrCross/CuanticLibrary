@@ -72,7 +72,14 @@ To use the Functions that are related with complex number and Matrix of complex 
 
   **marblesCalculateState:** this function receive an adjacency matrix and an initial state matrix.
 
-  **marbleCalculationStateSlits:** This function receive the number of slits, the number of shared slits and the number of targets, If we are calculating the states of a complex matrix we must set the ``isComplex`` parameter to true, in other way false. 
+  **marbleCalculationStateSlits:** This function receive the number of slits, the number of shared slits and the number of targets, If we are calculating the states of a complex matrix we must set the ``isComplex`` parameter to true, in other way false.
+  
+  ### Quantum Systems
+  In oder to use the Quantum systems library there are two public methods:
+  
+  **probabilityOfPosition:** This method calculate the probability to find them on a particular position
+  
+  **amplitudeOfTransition:** this method calculate the amplitude of transition between two ket vectors   
 
 
 ## Tests
@@ -88,8 +95,12 @@ $ mvn -Dtest=ImaginaryCalcTest test
 ````
 $ mvn -Dtest=QuatumMarblesTests test
 ````
-
-There are 19 tests about Imaginary Calculator, one test for every function mentioned before And there are 4 Test about the Quantum marble experiments
+#### Quantum Systems
+````
+$ mvn -Dtest=QuantumSystemTest test 
+````
+There are 19 tests about Imaginary Calculator, one test for every function mentioned before, 4 Test about the Quantum marble experiments and two test of Quantum Systems.
+for the test of quantum systems the methods dont have input files.
 
 Exist varius package **TestFiles**, in that packages are different files with examples that are used by tests. Inside that folders there is one folder with the respective answers.
 

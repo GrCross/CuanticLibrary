@@ -68,7 +68,6 @@ public class QuantumSystemTest {
                 {new Complex(0, Math.sqrt(2) / 2.0)}, {new Complex(-Math.sqrt(2) / 2.0, 0)}
         };
         Complex ans = qs.amplitudeOfTransition(ket1,ket2);
-        System.out.println(ans.toString());
         Complex realAns = new Complex(0,1.0000000000000002);
         assertTrue(ans.equals(realAns));
     }
