@@ -77,10 +77,15 @@ To use the Functions that are related with complex number and Matrix of complex 
   ### Quantum Systems
   In oder to use the Quantum systems library there are two public methods:
   
-  **probabilityOfPosition:** This method calculate the probability to find them on a particular position
+  **probabilityOfPosition:** this method calculate the probability to find them on a particular position
   
   **amplitudeOfTransition:** this method calculate the amplitude of transition between two ket vectors   
-
+    
+  **meanObservableOverAVector:** this method calculate the mean of an Observable over a vector.
+  
+  **eigenvaluesOfAnObservable:** this method calculate the observable's eigenvalues using the WolframAlpha API (WolframApi).
+  
+  
 
 ## Tests
 
@@ -103,6 +108,7 @@ There are 19 tests about Imaginary Calculator, one test for every function menti
 for the test of quantum systems the methods dont have input files.
 
 Exist varius package **TestFiles**, in that packages are different files with examples that are used by tests. Inside that folders there is one folder with the respective answers.
+
 
 ### Example
 

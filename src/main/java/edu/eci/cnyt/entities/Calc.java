@@ -480,6 +480,14 @@ public class Calc {
         return equals;
     }
 
+    public boolean equalsVector(Complex[] c1, Complex[] c2) {
+        boolean equals = true;
+        for (int i = 0; i < c1.length && equals; i++) {
+            equals = c1[i].equals(c2[i]);
+        }
+        return equals;
+    }
+
     private void extractComponents(Complex c1, Complex c2) {
         double[] temp1 = { c1.getRealP(), c1.getImagiP() };
         double[] temp2 = { c2.getRealP(), c2.getImagiP() };
@@ -496,6 +504,29 @@ public class Calc {
             System.out.println();
         }
     }
+
+    public static String matrixToString(Complex[][] m) {
+        String matrix = "{";
+        for (int i = 0; i < m.length; i++) {
+            matrix += "{";
+            for (int j = 0; j < m[0].length; j++) {
+                if (j + 1 == m[0].length) {
+                    if (m[i][j].getRealP() == 0) matrix += m[i][j].getImagiP() + "i";
+                    else if (m[i][j].getImagiP() == 0)  matrix += m[i][j].getRealP();
+                    else  matrix += m[i][j].getRealP() + "" + m[i][j].getImagiP() + "i";
+                } else {
+                    if (m[i][j].getRealP() == 0) matrix += m[i][j].getImagiP() + "i,";
+                    else if (m[i][j].getImagiP() == 0) matrix += m[i][j].getRealP() + ",";
+                    else matrix += m[i][j].getRealP() + "" + m[i][j].getImagiP() + "i,";
+                }
+            }
+            if (i + 1 == m.length) matrix += "}";
+            else  matrix += "},";
+        }
+        matrix += "}";
+        return matrix;
+    }
+
 
     public static Complex[][] identityMatrix(int len) {
         Complex[][] in = new Complex[len][len];

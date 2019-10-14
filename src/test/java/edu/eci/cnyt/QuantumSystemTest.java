@@ -9,7 +9,9 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Scanner;
 
 import edu.eci.cnyt.entities.Complex;
@@ -17,6 +19,7 @@ import edu.eci.cnyt.entities.Exceptions.ComplexException;
 import edu.eci.cnyt.entities.quantumExperiments.*;
 
 import edu.eci.cnyt.entities.quantumSystems.QuantumSystem;
+import edu.eci.cnyt.entities.quantumSystems.WolframAPI;
 import org.junit.*;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -31,6 +34,7 @@ public class QuantumSystemTest {
     String answerPath = "src/test/java/edu/eci/cnyt/testFilesQuantumSystem/answer/SystemSample";
 
     QuantumSystem qs = new QuantumSystem();
+    Calc calc = new Calc();
 
 
     @BeforeClass
@@ -54,9 +58,9 @@ public class QuantumSystemTest {
 
         Complex[][] ket1 = {{new Complex(-3, -1)}, {new Complex(0, -2)},
                 {new Complex(0, 1)}, {new Complex(2, 0)}};
-        double ans = qs.probabilityOfPosition(4,ket1,2);
+        double ans = qs.probabilityOfPosition(4, ket1, 2);
         double realAns = 1 / Math.pow(Math.sqrt(19), 2);
-        assertEquals(ans,realAns,0.3);
+        assertEquals(ans, realAns, 0.3);
     }
 
     @Test
@@ -67,21 +71,52 @@ public class QuantumSystemTest {
         Complex[][] ket2 = {
                 {new Complex(0, Math.sqrt(2) / 2.0)}, {new Complex(-Math.sqrt(2) / 2.0, 0)}
         };
-        Complex ans = qs.amplitudeOfTransition(ket1,ket2);
-        Complex realAns = new Complex(0,1.0000000000000002);
+        Complex ans = qs.amplitudeOfTransition(ket1, ket2);
+        Complex realAns = new Complex(0, 1.0000000000000002);
         assertTrue(ans.equals(realAns));
     }
 
+    @Test
+    public void TestCalcMean() throws IOException, ComplexException {
+        Complex[][] m1 = {
+                {new Complex(-1, 0), new Complex(0, -1)},
+                {new Complex(0, 1), new Complex(1, 0)}
+        };
+        Complex[][] ket1 = {
+                {new Complex(Math.sqrt(2) / 2.0, 0)},
+                {new Complex(0, Math.sqrt(2) / 2.0)}
+        };
 
+        Complex ans = qs.meanObservableOverAVector(m1,ket1);
+        System.out.println(ans.toString());
+        double realP = Math.round(ans.getRealP() * 100.0) / 100.0;
+        double imagiP = Math.round(ans.getImagiP() * 100.0) / 100.0;
+        Complex comp = new Complex(realP, imagiP);
+        System.out.println(comp.toString());
+        assertEquals(ans.getRealP(), comp.getRealP(), 0.1);
+        assertEquals(ans.getImagiP(), comp.getImagiP(), 0.1);
+    }
+
+    @Test
+    public void TestCalcEigenValues() throws IOException, ComplexException {
+        Complex[][] m1 = {
+                {new Complex(-1, 0), new Complex(0, -1)},
+                {new Complex(0, 1), new Complex(1, 0)}
+        };
+        Complex[] ans = qs.eigenvaluesOfAnObservable(m1);
+        Complex[] resultToCompare = {new Complex(-Math.sqrt(2), 0), new Complex(Math.sqrt(2), 0)};
+        assertTrue(calc.equalsVector(ans,resultToCompare));
+
+    }
 
 
     private Complex[][] createMatrix(String path, String sample) throws FileNotFoundException {
-        File file = new File(path+sample+".in");
+        File file = new File(path + sample + ".in");
         Scanner sc = new Scanner(file);
 
         int rows = Integer.parseInt(sc.nextLine());
         int cols = Integer.parseInt(sc.nextLine());
-        Complex[][]matrix = new Complex[rows][cols];
+        Complex[][] matrix = new Complex[rows][cols];
         for (int i = 0; i < rows; i++) {
             String[] temp = sc.nextLine().split(" ");
             for (int j = 0; j < cols; j++) {
@@ -96,25 +131,29 @@ public class QuantumSystemTest {
     }
 
 
-
-
-    private boolean compareMatrix(Complex[][] m1, Complex[][] m2){
+    private boolean compareMatrix(Complex[][] m1, Complex[][] m2) {
         boolean equals = true;
-        for (int i = 0; i < m1.length && equals;i++) {
-            for (int j = 0; j < m1[0].length && equals;j++) {
-                if(!m1[i][j].equals(m2[i][j])) equals=false;
+        for (int i = 0; i < m1.length && equals; i++) {
+            for (int j = 0; j < m1[0].length && equals; j++) {
+                if (!m1[i][j].equals(m2[i][j])) equals = false;
             }
         }
         return equals;
     }
 
-    private void printMatrix(Complex[][] matrix){
+    private void printMatrix(Complex[][] matrix) {
 
-        for (int i = 0; i < matrix.length;i++) {
-            for (int j = 0; j < matrix[0].length;j++) {
-                System.out.print(matrix[i][j].toString()+" ");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(matrix[i][j].toString() + " ");
             }
             System.out.println();
+        }
+    }
+
+    private void printVector(Complex[] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.print(matrix[i].toString() + " ");
         }
     }
 }

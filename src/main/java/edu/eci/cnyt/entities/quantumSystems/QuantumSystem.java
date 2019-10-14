@@ -4,6 +4,9 @@ import edu.eci.cnyt.entities.Calc;
 import edu.eci.cnyt.entities.Complex;
 import edu.eci.cnyt.entities.Exceptions.ComplexException;
 
+import java.io.IOException;
+import java.util.List;
+
 public class QuantumSystem {
 
     Calc calc = new Calc();
@@ -30,6 +33,16 @@ public class QuantumSystem {
         Complex[][] action = calc.action(m, ket);
         Complex mean = calc.internalProduct(action, ket);
         return mean;
+    }
+
+    public Complex[] eigenvaluesOfAnObservable(Complex[][] m) throws IOException {
+        WolframAPI httpConnection = new WolframAPI();
+        List<Double> response = httpConnection.getResponse(calc.matrixToString(m));
+        Complex[] eigens = new Complex[response.size()];
+        for (int i = 0; i < response.size(); i++) {
+            eigens[i] = new Complex(response.get(i), 0);
+        }
+        return eigens;
     }
 
 
