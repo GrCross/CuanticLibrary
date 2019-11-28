@@ -6,7 +6,6 @@
 package edu.eci.cnyt;
 
 import edu.eci.cnyt.entities.*;
-import java.util.Scanner;
 
 /**
  *
@@ -18,7 +17,7 @@ public class CuanticLibrary {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        Simon.simonAlg();
     }
-    
+
 }
